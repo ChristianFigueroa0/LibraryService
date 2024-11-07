@@ -30,6 +30,8 @@ namespace LibraryService.Application.Dtos
         /// <summary>
         /// The publication date of the book.
         /// </summary>
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required]
         public DateTime ReleaseDate { get; set; }
         /// <summary>
