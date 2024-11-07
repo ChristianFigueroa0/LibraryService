@@ -1,0 +1,65 @@
+﻿@using LibraryService.Application.Dtos
+@model BookDto
+@{
+    var ajaxUrl = ViewBag.Create ? "/books/Create" : "/books/Update";
+    var title = ViewBag.Create ? "Create" : "Update";
+}
+
+<div class="modal fade" id="book-form-modal-js" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@title modal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="book-form"
+                      data-ajax="true"
+                      data-ajax-url="@ajaxUrl"
+                      data-ajax-method="POST"
+                      data-ajax-success="books.onSuccessCreate"
+                      data-ajax-failure="books.onFailedCreate">
+                    <h4>Book data</h4>
+                    <input hidden asp-for="Id" class="form-control" />
+                    <div class="form-group">
+                        <label asp-for="Title">Title</label>
+                        <input asp-for="Title" class="form-control" required="required" />
+                        <span class="text-danger" asp-validation-for="Title"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label asp-for="Author">Author</label>
+                        <input asp-for="Author" class="form-control" required="required" />
+                        <span class="text-danger" asp-validation-for="Author"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label asp-for="Genre">Genre</label>
+                        <input asp-for="Genre" class="form-control" required="required" />
+                        <span class="text-danger" asp-validation-for="Genre"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label asp-for="Synopsis">Synopsis</label>
+                        <input asp-for="Synopsis" class="form-control" required="required" />
+                        <span class="text-danger" asp-validation-for="Synopsis"></span>
+                    </div>
+                    <div class="form-group mt-2">
+
+                        <label asp-for="ReleaseDate">Release Date</label>
+                        <div>
+                            <div class="input-group datepicker" id="datepicker-release-date" data-target-input="nearest">
+                                <input asp-for="ReleaseDate" id="releaseDateInput"  class="form-control" type="text" required="required" readonly="readonly" />
+                                <div class="input-group-append" data-target="#datepicker-release-date" data-toggle="datetimepicker">
+                                    <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+                                </div>
+                            </div>
+                            <span class="text-danger" asp-validation-for="ReleaseDate"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" id="js-submit-form-button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

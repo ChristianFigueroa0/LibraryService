@@ -1,0 +1,44 @@
+﻿@using LibraryService.Application.Dtos
+@model BookDto
+@{
+}
+
+<div class="modal fade" id="book-form-modal-js" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Book details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="book-form">
+                    <h4>Book data</h4>
+                    <input hidden asp-for="Id" class="form-control" />
+                    <div class="form-group">
+                        <label asp-for="Title">Title</label>
+                        <input asp-for="Title" class="form-control" required="required" readonly />
+                    </div>
+                    <div class="form-group mt-2">
+                        <label asp-for="Author">Author</label>
+                        <input asp-for="Author" class="form-control" required="required" readonly />
+                    </div>
+                    <div class="form-group mt-2">
+                        <label asp-for="Genre">Genre</label>
+                        <input asp-for="Genre" class="form-control" required="required" readonly />
+                    </div>
+                    <div class="form-group mt-2">
+                        <label asp-for="Synopsis">Synopsis</label>
+                        <input asp-for="Synopsis" class="form-control" required="required" readonly />
+                    </div>
+                    <div class="form-group mt-2">
+                        <label asp-for="ReleaseDate">Release Date</label>
+                        <input asp-for="ReleaseDate" class="form-control" required="required" readonly />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

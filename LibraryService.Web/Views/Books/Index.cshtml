@@ -1,0 +1,74 @@
+﻿@using LibraryService.Application.Dtos
+@model IEnumerable<BookDto>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="d-flex">
+                <h1 class="me-auto">Books</h1>
+                <div>
+                    <div class="text-center">
+                        <button id="btn-add-js" type="button" class="btn btn-primary btn-sm"><i class="bi bi-plus"></i></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <table class="table" id="table-books-js">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Release Date</th>
+                    <th>Synopsis</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@item.Author</td>
+                        <td>@item.Genre</td>
+                        <td>@item.ReleaseDate.ToString("yyyy-MM-dd")</td>
+                        <td>@item.Synopsis</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm"
+                               data-ajax="true"
+                               data-ajax-method="GET"
+                               href="/books/details/@item.Id"
+                               data-ajax-mode="replace"
+                               data-ajax-update="#modal-container"
+                               data-ajax-success="books.showModal"><i class="bi bi-info-circle"></i></a>
+                            <a class="btn btn-warning btn-sm"
+                               data-ajax="true"
+                               data-ajax-method="GET"
+                               href="/books/update/@item.Id"
+                               data-ajax-mode="replace"
+                               data-ajax-update="#modal-container"
+                               data-ajax-success="books.showEditModal"><i class="bi bi-pencil"></i></a>
+                            <a class="btn btn-danger btn-sm"
+                               data-ajax="true"
+                               data-ajax-method="GET"
+                               href="/books/delete/@item.Id"
+                               data-ajax-mode="replace"
+                               data-ajax-update="#modal-container"
+                               data-ajax-success="books.showModal"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="modal-container"></div>
+
+@section scripts {
+    <script src="~/js/books.js"></script>
+    <script>
+        books.init();
+    </script>
+}
